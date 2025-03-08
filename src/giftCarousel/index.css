@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  overflow-x: hidden;
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(to bottom right, #1e1b4b, #581c87, #1e1b4b);
+  position: relative;
+  overflow: hidden;
+}
+
+.header-container {
+  width: 100%;
+  padding: 3rem 1rem;
+  background: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: none;
+  z-index: 10;
+}
+
+.title {
+  color: white;
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.5px;
+  margin-top: -1rem;
+}
+
+.carousel-container {
+  width: 100%;
+  overflow: hidden;
+  padding: 3rem 0;
+  position: relative;
+  background: transparent;
+  z-index: 10;
+}
+
+.carousel-container::before,
+.carousel-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  z-index: 2;
+  display: none;
+}
+
+.carousel-container::before {
+  left: 0;
+  background: linear-gradient(to right, #f9f9f9, transparent);
+}
+
+.carousel-container::after {
+  right: 0;
+  background: linear-gradient(to left, #f9f9f9, transparent);
+}
+
+.carousel {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+.animation-item {
+  flex-shrink: 0;
+  background: #111827;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.animation-item:hover {
+  transform: translateY(-10px);
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2.2rem;
+  }
+  
+  .animation-item {
+    padding: 1rem;
+  }
+}
+
+/* Новые стили из todaysGiftsApp.tsx */
+.header-container {
+  background: none;
+  box-shadow: none;
+  z-index: 10;
+}
+
+.carousel-container {
+  background: transparent;
+  z-index: 10;
+}
+
+.carousel-container::before,
+.carousel-container::after {
+  display: none;
+}
+
+.animation-item {
+  background: #111827;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  padding: 1.5rem;
+}
+
+/* Плавающие элементы фона */
+.floating-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0.1;
+}
+
+.float-up, .float-down {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 300%;
+}
+
+.float-up {
+  animation: floatUp 30s linear infinite;
+}
+
+.float-down {
+  animation: floatDown 30s linear infinite;
+}
+
+.bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: white;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-66.66%); }
+}
+
+@keyframes floatDown {
+  0% { transform: translateY(-66.66%); }
+  100% { transform: translateY(0); }
+}
+
+/* Определяем пользовательские анимации для Tailwind */
+@layer utilities {
+  @keyframes float-up {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-66.66%); }
+  }
+
+  @keyframes float-down {
+    0% { transform: translateY(-66.66%); }
+    100% { transform: translateY(0); }
+  }
+
+  .animate-float-up {
+    animation: float-up 30s linear infinite;
+  }
+
+  .animate-float-down {
+    animation: float-down 30s linear infinite;
+  }
+}
